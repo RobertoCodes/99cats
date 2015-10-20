@@ -18,11 +18,27 @@ class CatsController < ApplicationController
     render :new
   end
 
+  def edit
+    @cat = Cat.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @cat = Cat.find(params[:id])
+    updated = @cat.update(cat_params)
+    if updated
+      @cat.update!(cat_params)
+      render :show
+    else
+      render json: @cat.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
   def create
     @cat = Cat.new(cat_params)
 
     if @cat.save
-      render :show
+      redirect_to cat_url(@cat.id)
     else
       render json: @cat.errors.full_messages, status: :unprocessable_entity
     end

@@ -8,6 +8,6 @@
 
 Cat.destroy_all
 
-Cat.create!(birth_date: "10-16-1991", color: :brown, name: "Robbie", sex: "m", description: "coolest cat")
-Cat.create!(birth_date: "05-03-1991", color: :black, name: "Jimmy", sex: "m", description: "most studious cat")
-Cat.create!(birth_date: "01-01-1900", color: :grey, name: "Clint", sex: "f", description: "oldest cat")
+Cat.create!(birth_date: "1991-10-16", color: :brown, name: "Robbie", sex: "m", description: "coolest cat")
+Cat.create!(birth_date: "1991-05-03", color: :black, name: "Jimmy", sex: "m", description: "most studious cat")
+Cat.create!(birth_date: "1900-01-01", color: :grey, name: "Clint", sex: "f", description: "oldest cat")

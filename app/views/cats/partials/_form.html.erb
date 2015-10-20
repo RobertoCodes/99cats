@@ -1,0 +1,40 @@
+<h1>Edit Cat</h1>
+
+<form method="POST" action="<%= cat_url(@cat.id) %>">
+  <input type="hidden" name="_method" value="PATCH">
+
+<h2> Name </h2>
+<input type="text" name="cat[name]" value= <%= @cat.name %>>
+<br>
+<h2> Sex </h2>
+<input type="radio" name="cat[sex]" id="cat_sex_female" value="f" <%= "checked" if @cat.sex == "f" %>  >
+<label for="cat_sex_female">Female</label>
+<br>
+
+<input type="radio" name="cat[sex]" id="cat_sex_male" value="m" >
+<label for="cat_sex_male">Male</label>
+<br>
+
+<h2> Color </h2>
+<label for="cat_color"</label>
+ <!-- dropdown -->
+ <select name="cat[color]" id="cat_color"%>>
+   <!-- `brown`, if selected, is the value that will be submitted to
+        the server; user is displayed "Brown" as the choice -->
+    <option value=""> </option>
+   <option value="brown" selected >Brown </option>
+   <option value="black">Black</option>
+   <option value="blue">Grey</option>
+ </select>
+ <br>
+ <h2> Date of Birth </h2>
+  <input type ="date" name="cat[birth_date]" value= <%= @cat.birth_date %>>
+
+<h2> Description </h2>
+<label for="cat_description"</label>
+<textarea name="cat[description]" id="cat_description" ><%= @cat.description %></textarea>
+<br>
+
+
+<input type="submit" value="edit cat">
+</form>
