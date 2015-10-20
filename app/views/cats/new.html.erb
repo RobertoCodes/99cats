@@ -1,0 +1,36 @@
+<form action=cats_url method="post">
+  <h2> Name </h2>
+  <input type="text" name="cat[name]">
+  <br>
+  <h2> Sex </h2>
+  <input type="radio" name="cat[sex]" id="cat_sex_female" value="f">
+ <label for="cat_sex_female">Female</label>
+ <br>
+
+ <input type="radio" name="cat[sex]" id="cat_sex_male" value="m">
+ <label for="cat_sex_male">Male</label>
+ <br>
+
+  <h2> Color </h2>
+ <label for="cat_color"</label>
+   <!-- dropdown -->
+   <select name="cat[color]" id="cat_color">
+     <!-- `brown`, if selected, is the value that will be submitted to
+          the server; user is displayed "Brown" as the choice -->
+      <option value=""> </option>
+     <option value="brown">Brown</option>
+     <option value="black">Black</option>
+     <option value="blue">Grey</option>
+   </select>
+   <br>
+   <h2> Date of Birth </h2>
+    <input type ="date">
+
+ <h2> Description </h2>
+<label for="cat_description"</label>
+<textarea name="cat[description]" id="cat_description"></textarea>
+<br>
+
+
+  <input type="submit" value="Create cat">
+</form>
