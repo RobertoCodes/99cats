@@ -1,0 +1,43 @@
+<% action_url = cat.persisted? ? cat_url(cat) : cats_url %>
+<% form_method = @cat.persisted? ? "PATCH" : "POST"  %>
+<% submit_text = @cat.persisted? ? "Update Cat!" : "Create Cat!" %>
+
+<form method="POST" action="<%= action_url %>">
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+<h2> Name </h2>
+<input type="text" name="cat[name]" value= <%= cat.name %>>
+<br>
+<h2> Sex </h2>
+<input type="radio" name="cat[sex]" id="cat_sex_female" value="f" <%= "checked" if cat.sex == "f" %> >
+<label for="cat_sex_female">Female</label>
+<br>
+
+<input type="radio" name="cat[sex]" id="cat_sex_male" value="m"  <%= "checked" if cat.sex == "m" %> >
+<label for="cat_sex_male">Male</label>
+<br>
+
+<h2> Color </h2>
+<label for="cat_color"</label>
+ <!-- dropdown -->
+ <select name="cat[color]" id="cat_color"%>>
+   <!-- `brown`, if selected, is the value that will be submitted to
+        the server; user is displayed "Brown" as the choice -->
+
+   <option value="" <%= "selected" if cat.color == "" %>> </option>
+   <option value="brown" <%= "selected" if cat.color == "brown" %>>Brown </option>
+   <option value="black" <%= "selected" if cat.color == "black" %>>Black</option>
+   <option value="grey" <%= "selected" if cat.color == "grey" %>>Grey</option>
+ </select>
+ <br>
+ <h2> Date of Birth </h2>
+  <input type ="date" name="cat[birth_date]" value= <%= cat.birth_date %>>
+
+<h2> Description </h2>
+<label for="cat_description"</label>
+<textarea name="cat[description]" id="cat_description" ><%= cat.description %></textarea>
+<br>
+
+
+<input type="submit" value=" <%=  submit_text %> ">
+</form>
