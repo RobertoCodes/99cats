@@ -1,6 +1,8 @@
 require 'byebug'
 class CatsController < ApplicationController
 
+before_action :editor_owns_cat, only: [:edit,:update]
+
   def index
     @cats = Cat.all
 
@@ -38,7 +40,7 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(cat_params)
-
+    @cat.owner = current_user
     if @cat.save
       redirect_to cat_url(@cat.id)
     else
@@ -47,9 +49,17 @@ class CatsController < ApplicationController
 
   end
 
+  def editor_owns_cat
+    @cat = Cat.find(params[:id])
+    unless current_user.cats.exists?(id: @cat.id)
+      @cat.errors.add(:user_id, "User does not own cat")
+      redirect_to cats_url(@cat.id)
+    end
+  end
+
 
   private
     def cat_params
-      params.require(:cat).permit( :birth_date, :color, :name, :sex, :description )
+      params.require(:cat).permit( :birth_date, :color, :name, :sex, :description, :user_id )
     end
 end

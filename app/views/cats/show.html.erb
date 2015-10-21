@@ -45,17 +45,8 @@
   <li> Start date: <%= rental.start_date %>, End date: <%= rental.end_date %>
 
   <% if rental.pending?%>
-    <form class="" action="index.html" method="post">
-      <input type="hidden", method="_method" value="PATCH">
-    <%=  link_to "Appove Rental", '/cat_rental_requests/:id/approve!', method: post %>
 
-    </form>
-    <%=  "Deny Rental", '/cat_rental_requests/:id/deny!', method: post %>
-    <form class="" action="index.html" method="post">
-      <input type="hidden", method="_method" value="PATCH">
-    <%=  link_to "Deny Rental", url, method: post %>
-
-    </form>
   <% end %>
 <% end %>
+
 </ul>
