@@ -26,12 +26,20 @@ def overlapping_pending_requests
 end
 
 def approve!
-  self.status = "APPROVED"
-  self.update!
-  overlapping_pending_requests.each do |request|
-    request.status = "DENIED"
-    request.update!
+  transaction do
+    self.status = "APPROVED"
+    self.update!
+    overlapping_pending_requests.each { |request| request.deny! }
   end
+end
+
+def deny!
+  self.status = "DENIED"
+  self.update!
+end
+
+def pending?
+  status == "PENDING"
 end
 
 belongs_to :cat,
