@@ -41,12 +41,15 @@
 <h2> Rentals </h2>
 
 <ul>
+
 <% @rentals.each do |rental| %>
   <li> Start date: <%= rental.start_date %>, End date: <%= rental.end_date %>
 
   <% if rental.pending?%>
-
-  <% end %>
+    <form method="POST" action="/cat_rental_requests/<%= rental.id %>/deny!">
+      <input type="hidden" name="_method" value="PATCH">
+      <input type="submit" value="Deny request!" >
+    </form>
 <% end %>
-
+<% end %>
 </ul>

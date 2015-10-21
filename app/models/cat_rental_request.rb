@@ -28,14 +28,14 @@ end
 def approve!
   transaction do
     self.status = "APPROVED"
-    self.update!
+    self.save!
     overlapping_pending_requests.each { |request| request.deny! }
   end
 end
 
 def deny!
   self.status = "DENIED"
-  self.update!
+  self.save!
 end
 
 def pending?
