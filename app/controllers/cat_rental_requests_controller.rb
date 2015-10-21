@@ -31,9 +31,9 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def approve!
-    CatRentalRequest.find(params[:id]).approve!
-
-    render :new
+    @cat_rental = CatRentalRequest.find(params[:id])
+    @cat_rental.approve!
+    redirect_to cat_url(@cat_rental.cat_id)
   end
 
   def deny!

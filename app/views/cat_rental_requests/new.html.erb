@@ -2,6 +2,10 @@
 <h2> Cats </h2>
 
 <form method="POST" action="<%=cat_rental_requests_url%>">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
 
  <select name="cat_rental_request[cat_id]" id="cat_name"%>>
 <% @cats.each do |cat| %>

@@ -45,11 +45,27 @@
 <% @rentals.each do |rental| %>
   <li> Start date: <%= rental.start_date %>, End date: <%= rental.end_date %>
 
-  <% if rental.pending?%>
+  <% if rental.pending? && current_user.id == @cat.user_id%>
     <form method="POST" action="/cat_rental_requests/<%= rental.id %>/deny!">
       <input type="hidden" name="_method" value="PATCH">
+      <input
+  type="hidden"
+  name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+
       <input type="submit" value="Deny request!" >
     </form>
+
+    <form method="POST" action="/cat_rental_requests/<%= rental.id %>/approve!">
+      <input type="hidden" name="_method" value="PATCH">
+      <input
+  type="hidden"
+  name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+
+      <input type="submit" value="Approve request!" >
+    </form>
+
 <% end %>
 <% end %>
 </ul>
